@@ -683,10 +683,12 @@ namespace HRMS.Data
                     await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
                 if (!await roleManager.RoleExistsAsync(UserRoles.User))
                     await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+                if (!await roleManager.RoleExistsAsync(UserRoles.Staff))
+                    await roleManager.CreateAsync(new IdentityRole(UserRoles.Staff));
 
                 //Users
                 var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-                string adminUserEmail = "admin@MovieHub.com";
+                string adminUserEmail = "admin@HRMS.com";
 
                 var adminUser = await userManager.FindByEmailAsync(adminUserEmail);
                 if (adminUser == null)
@@ -694,7 +696,7 @@ namespace HRMS.Data
                     var newAdminUser = new ApplicationUser()
                     {
                         FullName = "Admin User",
-                        UserName = "admin-user",
+                        UserName = "admin",
                         Email = adminUserEmail,
                         EmailConfirmed = true
                     };
@@ -703,7 +705,7 @@ namespace HRMS.Data
                 }
 
 
-                string appUserEmail = "user@MovieHub.com";
+                string appUserEmail = "user@HRMS.com";
 
                 var appUser = await userManager.FindByEmailAsync(appUserEmail);
                 if (appUser == null)
@@ -711,12 +713,29 @@ namespace HRMS.Data
                     var newAppUser = new ApplicationUser()
                     {
                         FullName = "Application User",
-                        UserName = "app-user",
+                        UserName = "user",
                         Email = appUserEmail,
                         EmailConfirmed = true
                     };
                     await userManager.CreateAsync(newAppUser, "Coding@1234");
                     await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
+                }
+
+
+                string staffUserEmail = "staff@HRMS.com";
+
+                var staffUser = await userManager.FindByEmailAsync(staffUserEmail);
+                if (staffUser == null)
+                {
+                    var newStaffUser = new ApplicationUser()
+                    {
+                        FullName = "Staff User",
+                        UserName = "staff",
+                        Email = staffUserEmail,
+                        EmailConfirmed = true
+                    };
+                    await userManager.CreateAsync(newStaffUser, "Coding@1234");
+                    await userManager.AddToRoleAsync(newStaffUser, UserRoles.Staff);
                 }
             }
         }

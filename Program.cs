@@ -1,6 +1,7 @@
 using HRMS.Data;
 using HRMS.Data.Cart;
 using HRMS.Data.Services;
+using HRMS.Data.Static;
 using HRMS.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
@@ -51,6 +52,8 @@ internal class Program
         app.UseRouting();
         app.UseSession(); 
         app.UseAuthentication();
+        app.UseAuthorization();
+
         app.UseAuthorization();
 
         app.MapControllerRoute(

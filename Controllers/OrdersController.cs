@@ -23,11 +23,11 @@ namespace HRMS.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            string userRole = User.FindFirstValue(ClaimTypes.Role);
+            //string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //string userRole = User.FindFirstValue(ClaimTypes.Role);
 
-            var orders = await _OrdersService.GetOrdersByUserIdAndRoleAsync(userId, userRole);
-            return View(orders);
+            //var orders = await _OrdersService.GetOrdersByUserIdAndRoleAsync(userId, userRole);
+            return View();
         }
         public IActionResult ShoppingCart()
         {
