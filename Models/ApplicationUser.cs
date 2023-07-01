@@ -7,5 +7,6 @@ namespace HRMS.Models
     {
         [Display(Name = "Full name")]
         public string FullName { get; set; }
+
     }
 }

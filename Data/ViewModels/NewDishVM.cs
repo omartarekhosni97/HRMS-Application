@@ -13,7 +13,7 @@ namespace HRMS.Data.ViewModels
         [Required(ErrorMessage = "Name is required")]
         public string Name { get; set; }
 
-        [Display(Name = "Movie description")]
+        [Display(Name = "Dish description")]
         public string Description { get; set; }
 
         [Display(Name = "Price in $")]
