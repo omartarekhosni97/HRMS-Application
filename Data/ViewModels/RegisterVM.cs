@@ -4,17 +4,7 @@ namespace HRMS.Data.ViewModels
 {
     public class RegisterVM
     {
-        public RegisterVM()
-        {
-        }
-
-        public RegisterVM(string fullName, string emailAddress, string password, string confirmPassword)
-        {
-            FullName = fullName ?? throw new ArgumentNullException(nameof(fullName));
-            EmailAddress = emailAddress ?? throw new ArgumentNullException(nameof(emailAddress));
-            Password = password ?? throw new ArgumentNullException(nameof(password));
-            ConfirmPassword = confirmPassword ?? throw new ArgumentNullException(nameof(confirmPassword));
-        }
+       
 
         [Display(Name = "Full name")]
         [Required(ErrorMessage = "Full name is required")]

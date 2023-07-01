@@ -11,12 +11,12 @@ namespace HRMS.Models
         public int Amount { get; set; }
         public double Price { get; set; }
 
-        public int MovieId { get; set; }
-        [ForeignKey("MovieId")]
-        public Dish Movie { get; set; }
+        public int DishId { get; set; }
+        [ForeignKey("DishId")]
+        public Dish? Dish { get; set; }
 
         public int OrderId { get; set; }
         [ForeignKey("OrderId")]
-        public Order Order { get; set; }
+        public Order? Order { get; set; }
     }
 }

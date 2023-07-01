@@ -9,6 +9,7 @@ using HRMS.Data;
 namespace HRMS.Controllers
 {
     [Authorize(Roles = UserRoles.Admin)]
+    [Authorize(Roles = UserRoles.Staff)]
     public class ItemsController : Controller
     {
 

@@ -4,6 +4,7 @@ using HRMS.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MovieHub.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230701071806_Order_Fix")]
+    partial class Order_Fix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -202,6 +205,9 @@ namespace MovieHub.Migrations
                     b.Property<int>("DishId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("MovieId")
+                        .HasColumnType("int");
+
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
@@ -210,7 +216,7 @@ namespace MovieHub.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DishId");
+                    b.HasIndex("MovieId");
 
                     b.HasIndex("OrderId");
 
@@ -228,7 +234,7 @@ namespace MovieHub.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
-                    b.Property<int>("DishId")
+                    b.Property<int>("MovieId")
                         .HasColumnType("int");
 
                     b.Property<string>("ShoppingCartId")
@@ -237,7 +243,7 @@ namespace MovieHub.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DishId");
+                    b.HasIndex("MovieId");
 
                     b.ToTable("ShoppingCartItems");
                 });
@@ -407,11 +413,9 @@ namespace MovieHub.Migrations
 
             modelBuilder.Entity("HRMS.Models.OrderItem", b =>
                 {
-                    b.HasOne("HRMS.Models.Dish", "Dish")
+                    b.HasOne("HRMS.Models.Dish", "Movie")
                         .WithMany()
-                        .HasForeignKey("DishId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MovieId");
 
                     b.HasOne("HRMS.Models.Order", "Order")
                         .WithMany("OrderItems")
@@ -419,20 +423,20 @@ namespace MovieHub.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Dish");
+                    b.Navigation("Movie");
 
                     b.Navigation("Order");
                 });
 
             modelBuilder.Entity("HRMS.Models.ShoppingCartItem", b =>
                 {
-                    b.HasOne("HRMS.Models.Dish", "Dish")
+                    b.HasOne("HRMS.Models.Dish", "Movie")
                         .WithMany()
-                        .HasForeignKey("DishId")
+                        .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Dish");
+                    b.Navigation("Movie");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

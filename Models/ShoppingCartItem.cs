@@ -7,7 +7,7 @@ namespace HRMS.Models
         [Key]
         public int Id { get; set; }
 
-        public Dish Movie { get; set; }
+        public Dish Dish { get; set; }
         public int Amount { get; set; }
 
 
